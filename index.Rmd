@@ -1,0 +1,51 @@
+---
+title: "Tablero de Cantones"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+```{r paquetes, message=FALSE}
+library(dplyr)
+library(sf)
+library(leaflet)
+```
+
+```{r lectura-datos, message=FALSE}
+cantones <-
+  st_read(dsn = "cantones_simplificados .geojson", quiet = TRUE) %>%
+  st_transform(4326)
+```
+
+
+Column
+-----------------------------------------------------------------------
+
+### Mapa cantones
+
+```{r}
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = cantones, weight = 1.0)
+```
+
+Column
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
